@@ -12,7 +12,10 @@ bash <(curl -sL https://raw.githubusercontent.com/xone-sdk/literature_download_s
 ### 手动安装
 ```bash
 git clone git@github.com:xone-sdk/literature_download_skills.git
-cp literature_download_skills/.claude/skills/* ~/.claude/skills/
+cp -r literature_download_skills/.claude/skills/cnki.skill/* ~/.claude/skills/
+cp -r literature_download_skills/.claude/skills/ieee.skill/* ~/.claude/skills/
+cp -r literature_download_skills/.claude/skills/springer.skill/* ~/.claude/skills/
+cp literature_download_skills/.claude/skills/文献检索下载工作流.md ~/.claude/skills/
 ```
 
 ---
@@ -22,6 +25,9 @@ cp literature_download_skills/.claude/skills/* ~/.claude/skills/
 | 文件 | 功能 | 类型 |
 |------|------|------|
 | `文献检索下载工作流.md` | Claude Code Skill：检索→下载→命名→分类→Zotero导入 | 工作流 |
+| `cnki.skill/` | CNKI（知网）全套工具：搜索、下载、导出、期刊查询 | Skill套件 |
+| `ieee.skill/` | IEEE Xplore 论文下载工具 | Skill套件 |
+| `springer.skill/` | Springer Link 论文下载工具 | Skill套件 |
 | `extracted.py` | 多模态文献批量提取：PDF / Word / HTML / 图片 → JSON | 脚本 |
 | `install.sh` | 一键安装 Skill 到 `~/.claude/skills/` | 安装 |
 
@@ -45,7 +51,7 @@ python extracted.py <存放文件的路径>
 
 **示例：**
 ```bash
-python extracted.py ./04_ziliao
+python extracted.py ./ziliao
 ```
 
 脚本会递归扫描指定目录下所有子文件夹中的文件，按格式自动选择提取器：
@@ -78,7 +84,7 @@ output/
 {
   "status": "success",
   "generated_at": "2026-06-02T12:00:00",
-  "input_dir": "G:/.../04_ziliao",
+  "input_dir": "<workspace>/ziliao",
   "summary": {
     "total_processed": 20,
     "success": 18,
